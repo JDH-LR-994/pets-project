@@ -1,8 +1,10 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.querySelector('.input');
     const messages = document.querySelector('.messages');
     const sendButton = document.querySelector('.send-button');
-    
+    clearChat();
     loadMessages();
 
     sendButton.addEventListener('click', handleMessage);
@@ -65,10 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadMessages() {
-        localStorage.clear();
         const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
         messages.forEach(msg => {
             addMessage(msg.text, msg.type);
         });
+    }
+    function clearChat() {
+        document.getElementById('chatMessages').innerHTML = '';
+        
     }
 });
